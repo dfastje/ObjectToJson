@@ -4,10 +4,7 @@ import com.byelkawolf.objecttojson.services.RestDemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by dfast on 7/11/2017.
@@ -29,10 +26,9 @@ public class RestDemoController {
         return ResponseEntity.ok().build();
     }
 
-    @RequestMapping(value = "/fibbi/{nthNum}", method = RequestMethod.GET)
-    public @ResponseBody String fibbi(@PathVariable int nthNum){
-        int fibNum = restDemoService.fibonacci(nthNum);
-        return "The " + nthNum + "th number of the Fibonacci Sequence is " + fibNum;
+    @RequestMapping(value = "/objecttojson", method = RequestMethod.POST)
+    public @ResponseBody String objectToJson(@RequestBody String input){
+        return "Coverted to and back from object: " + restDemoService.simpleStringProcessor( input );
     }
 
 }
